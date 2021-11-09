@@ -11,7 +11,7 @@ then
 
 elif [ $AWS_BATCH_JOB_ARRAY_INDEX -eq 2 ];
 then
-    conda run -n pipeline_controller_base python step2_IDconverter.R 
+    conda run -n pipeline_controller_base Rscript step2_IDconverter.R 
 
 elif [ $AWS_BATCH_JOB_ARRAY_INDEX -eq 3 ];
 then
