@@ -15,7 +15,7 @@ import itertools
 from sys import argv
 from libraries.statFunction import StatHandler
 
-parser = argparse.ArgumentParser(prog='actscoreDiff.py')
+parser = argparse.ArgumentParser(prog='step4_actscoreDiff.py')
 # Input data
 parser.add_argument('-t','--type', dest='resultType', default='RR,CIS',\
      help='Result type, ex: long, healthy, "RR,CIS" ')

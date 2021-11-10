@@ -17,7 +17,7 @@ import step4_actscoreDiff
 from libraries.statFunction import StatHandler
 
 
-parser = argparse.ArgumentParser(prog='actscoreDiff.py')
+parser = argparse.ArgumentParser(prog='step7_geneRFECV.py')
 # Input data
 parser.add_argument('-r','--rthresh', dest='rankingthresh', required=True,\
      help='Threshold for RFECV" ')
@@ -46,5 +46,5 @@ if __name__ == "__main__":
 
     # features and ranking
     outputFile = SharedFilePath+os.path.basename(step1Input).replace('.csv', '.step7.csv') # replace to step5 output
-    rankarr = StatHandler.calculate_RFECV(df, X, y, args.rankingthresh) # get ranksum result
+    rankarr = StatHandler.calculate_RFECV(df, X, y, int(args.rankingthresh)) # get ranksum result
     df.loc[df.index[rankarr]].to_csv(outputFile) # Writing
