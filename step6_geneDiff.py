@@ -10,9 +10,9 @@ Description: Mimic of notebook code for pipeline work, please see step3 in Jun n
 import os
 from scipy.stats import ranksums
 import pandas as pd
+from libraries.metaHandler import metaExt
 
 ## call previous step for calling internal function
-import step4_actscoreDiff
 from libraries.statFunction import StatHandler
 import itertools
 import argparse
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     df_expr = pd.read_csv(SharedFilePath+inputExprFile, engine='c', index_col=0) # get expr
     meta_data = pd.read_csv(SharedFilePath+metaName) # metadata
-    longDD_samples, shortDD_samples = step4_actscoreDiff._LoadDiseaseDuration(df_expr, meta_data, args.resultType) # get samples for LDD SDD
+    longDD_samples, shortDD_samples = metaExt._LoadDiseaseDuration(df_expr, meta_data, args.resultType) # get samples for LDD SDD
 
     geneList = _extract_geneSignature(inputFile, SharedFilePath+msigFile) # Extracting genes
     print("Total extracted genes: "+ str(len(geneList)))

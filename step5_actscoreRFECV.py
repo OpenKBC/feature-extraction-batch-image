@@ -11,9 +11,9 @@ Step4 is the same process with different input(activation socre -> gene expressi
 import pandas as pd
 import argparse
 import os
+from libraries.metaHandler import metaExt
 
 ## call previous step for calling internal function
-import step4_actscoreDiff
 from libraries.statFunction import StatHandler
 
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
     #Data loading
     df = pd.read_csv(inputFile, engine='c', index_col=0)
     meta_data = pd.read_csv(SharedFilePath+metaName)
-    longDD_samples, shortDD_samples = step4_actscoreDiff._LoadDiseaseDuration(df, meta_data, args.resultType)
+    longDD_samples, shortDD_samples = metaExt._LoadDiseaseDuration(df, meta_data, args.resultType)
     df = df[longDD_samples+shortDD_samples].dropna() # reform df with intersected samples
 
     # Make training samples
