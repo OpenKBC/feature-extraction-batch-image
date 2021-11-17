@@ -19,7 +19,7 @@ class metaExt(object):
         return (less_samples, greater_samples)
 
     # Copy of OpenKbcMSToolkit.py
-    def _get_sample_name_by_category(dataframe, sampleColumn, dataColname):
+    def _get_sample_name_by_category(self, dataframe, sampleColumn, dataColname):
         sample_category = dataframe[dataColname].unique() # get unique value for category
         result = [] # empty list
         for x in sample_category: 
