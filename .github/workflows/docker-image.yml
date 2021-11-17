@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Feature extraction batch Image CI
 
 on:
   push:
