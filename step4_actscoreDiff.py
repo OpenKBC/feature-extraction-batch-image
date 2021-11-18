@@ -27,6 +27,8 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
 
+    me = metaExt()
+
     SharedFilePath = os.environ['efspoint'] # Main data path here, goes to EFS volume
     metaName = os.environ['metafile'] # EPIC_HCvB_metadata_baseline_updated-share.csv
     msigFile = os.environ['msigDBPATH'] # msigdb.v7.4.entrez.gmt
@@ -35,7 +37,7 @@ if __name__ == "__main__":
 
     df = pd.read_csv(inputFile, engine='c', index_col=0).T.dropna() # Activation Score
     meta_data = pd.read_csv(SharedFilePath+metaName) # Meta data
-    longDD_samples, shortDD_samples = metaExt._LoadDiseaseDuration(df, meta_data, args.resultType)
+    longDD_samples, shortDD_samples = me._LoadDiseaseDuration(df, meta_data, args.resultType)
     ranksumSig = StatHandler.calculate_ranksum(df, shortDD_samples, longDD_samples) # get ranksum result
     
     outputFile = SharedFilePath+os.path.basename(step1Input).replace('.csv', '.step4.csv') # replace to step4 output

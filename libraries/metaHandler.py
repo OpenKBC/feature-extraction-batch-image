@@ -2,6 +2,9 @@ import itertools
 import numpy as np
 
 class metaExt(object):
+    def __init__(self) -> None:
+        print("")
+
     def _get_sample_name_by_contValues(self, dataframe, sampleColumn, dataColname, threshold):
         cont_df = dataframe.dropna(subset=[dataColname]) # continuous perspective dataframe
         cont_df[dataColname] = cont_df[dataColname].astype(float) # make float

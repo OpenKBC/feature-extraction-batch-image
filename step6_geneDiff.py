@@ -43,6 +43,7 @@ args = parser.parse_args()
 
 
 if __name__ == "__main__":
+    me = metaExt()
 
     SharedFilePath = os.environ['efspoint'] # Main data path here, goes to EFS volume
     metaName = os.environ['metafile'] # EPIC_HCvB_metadata_baseline_updated-share.csv
@@ -54,7 +55,7 @@ if __name__ == "__main__":
 
     df_expr = pd.read_csv(SharedFilePath+inputExprFile, engine='c', index_col=0) # get expr
     meta_data = pd.read_csv(SharedFilePath+metaName) # metadata
-    longDD_samples, shortDD_samples = metaExt._LoadDiseaseDuration(df_expr, meta_data, args.resultType) # get samples for LDD SDD
+    longDD_samples, shortDD_samples = me._LoadDiseaseDuration(df_expr, meta_data, args.resultType) # get samples for LDD SDD
 
     geneList = _extract_geneSignature(inputFile, SharedFilePath+msigFile) # Extracting genes
     print("Total extracted genes: "+ str(len(geneList)))

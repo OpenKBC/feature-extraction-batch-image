@@ -28,6 +28,7 @@ args = parser.parse_args()
 
 # Simple control for snakemake(no argparse)
 if __name__ == "__main__":
+    me = metaExt()
 
     SharedFilePath = os.environ['efspoint'] # Main data path here, goes to EFS volume
     metaName = os.environ['metafile'] # EPIC_HCvB_metadata_baseline_updated-share.csv
@@ -38,7 +39,7 @@ if __name__ == "__main__":
     #Data loading
     df = pd.read_csv(inputFile, engine='c', index_col=0)
     meta_data = pd.read_csv(SharedFilePath+metaName)
-    longDD_samples, shortDD_samples = metaExt._LoadDiseaseDuration(df, meta_data, args.resultType)
+    longDD_samples, shortDD_samples = me._LoadDiseaseDuration(df, meta_data, args.resultType)
     df = df[longDD_samples+shortDD_samples].dropna() # reform df with intersected samples
 
     # Make training samples
